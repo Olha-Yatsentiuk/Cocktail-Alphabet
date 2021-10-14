@@ -1,0 +1,1 @@
+export { getAlphabet } from './alphabet'
