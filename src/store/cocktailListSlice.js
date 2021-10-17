@@ -9,7 +9,7 @@ export const slice = createSlice({
     addList: (state, action) => {
       state.value = action.payload;
     },
-  },
+ },
 });
 
 export const { addList } = slice.actions;
@@ -25,6 +25,7 @@ export const getCocktailsByLetter = letter => {
     }
   };
 }
+
 
 export const getCocktails = state => state.cocktails.value;
 

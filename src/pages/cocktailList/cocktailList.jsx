@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { Container, ListContainer, Card, Title, Type, CocktailName, Glass, InfoContainer, Picture } from './cocktailList.styled';
-import { getCocktailsByLetter, getCocktails } from "../../store/cocktailSlice";
+import { getCocktailsByLetter, getCocktails } from "../../store/cocktailListSlice";
 
 export const CocktailList = () => {
     const [result, setResult] = useState([]);
@@ -12,18 +12,19 @@ export const CocktailList = () => {
 
     useEffect(() => { 
         dispatch(getCocktailsByLetter(letter));
-    }, [letter]);
+    }, [letter, dispatch]);
 
     useEffect(() => { 
         setResult(drinks);
     }, [drinks]);
+    console.log(drinks)
 
     return(
         <Container>
             <Title>Cocktails Starting on Letter {letter.toUpperCase()}</Title>
             <ListContainer>
                 {result.map((item)=> (
-                    <Card>
+                    <Card key={item.id} to={`/cocktail/${item.idDrink}`}> 
                         <Picture  src={item.strDrinkThumb}></Picture>
                         <InfoContainer>
                             <CocktailName key={item.idDrink}> {item.strDrink} </CocktailName>
