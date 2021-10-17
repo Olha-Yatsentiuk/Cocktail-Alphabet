@@ -1,34 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, ListContainer, Card, Title, Type, CocktailName, Glass, InfoContainer, Picture } from './cocktailList.styled';
-
+import { getCocktailsByLetter, getCocktails } from "../../store/cocktailSlice";
 
 export const CocktailList = () => {
-    const[cocktails, setCocktails] = useState([]);
+    const [result, setResult] = useState([]);
     const { letter } = useParams();
-    console.log(letter)
+    const drinks = useSelector(getCocktails);
+    const dispatch = useDispatch();
 
+    useEffect(() => { 
+        dispatch(getCocktailsByLetter(letter));
+    }, [letter]);
 
-    const url = `https://thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`;
-  
-   useEffect(() => { 
-    async function fetchData() {
-        const response = await fetch(url);
-        const list = await response.json();
-        if(list) {
-            setCocktails(list.drinks)
-            console.log(list.drinks)
-        }
-    }; 
-
-    fetchData()
-  }, [url]); 
+    useEffect(() => { 
+        setResult(drinks);
+    }, [drinks]);
 
     return(
         <Container>
-            <Title>Cocktail Alphabet - Letter {letter.toUpperCase()}</Title>
+            <Title>Cocktails Starting on Letter {letter.toUpperCase()}</Title>
             <ListContainer>
-                {cocktails.map((item)=> (
+                {result.map((item)=> (
                     <Card>
                         <Picture  src={item.strDrinkThumb}></Picture>
                         <InfoContainer>

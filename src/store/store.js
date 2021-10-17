@@ -1,7 +1,8 @@
-import { createStore } from 'redux';
-import reducers from './reducers/reducers';
+import { configureStore } from '@reduxjs/toolkit'
+import cocktailsReducer from './cocktailSlice'
 
-const store = createStore(reducers);
-
-export default store;
-
+export default configureStore({
+  reducer: {
+    cocktails: cocktailsReducer
+  }
+})

@@ -1,28 +1,28 @@
-import styled from 'styled-components'
-import { Link } from "react-router-dom";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     background-image: url("../images/cocktails.jpg"); 
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
-    `
+    `;
 
 export const Title = styled.h1`
     color: white;
     font-size: 3em;
     text-align: center;
     padding-top: 30px;
-    `
+    `;
 
 export const Alphabet = styled.div`
     display: flex;
     flex-flow: row wrap;
     width: 100%;
     justify-content: center;
-    `
+    `;
 
-export  const Letter = styled(Link)`
+export const Letter = styled(Link)`
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -44,4 +44,4 @@ export  const Letter = styled(Link)`
         transform: scale(1.1, 1.1);
     }
     }
-    `
+    `;

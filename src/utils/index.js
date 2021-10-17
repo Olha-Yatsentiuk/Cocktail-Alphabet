@@ -1,1 +1,1 @@
-export { getAlphabet } from './alphabet'
+export { getAlphabet } from './alphabet';
