@@ -17,14 +17,15 @@ export const CocktailList = () => {
     useEffect(() => { 
         setResult(drinks);
     }, [drinks]);
-    console.log(drinks)
 
     return(
         <Container>
             <Title>Cocktails Starting on Letter {letter.toUpperCase()}</Title>
             <ListContainer>
-                {result.map((item)=> (
-                    <Card key={item.id} to={`/cocktail/${item.idDrink}`}> 
+                {result.length === 0 && <p> Sorry, there are no cocktails begining with letter "U". Try some other letters. </p> 
+            }
+                {result.map((item)=> (  
+                    <Card key={item.idDrink} to={`/list/${letter}/${item.idDrink}`}> 
                         <Picture  src={item.strDrinkThumb}></Picture>
                         <InfoContainer>
                             <CocktailName key={item.idDrink}> {item.strDrink} </CocktailName>

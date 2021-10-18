@@ -19,7 +19,9 @@ export const getCocktailsByLetter = letter => {
     try {
       const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
       const list = await response.json();
-      dispatch(addList(list.drinks));
+      const result = list.drinks ? list.drinks : [];
+      dispatch(addList(result));
+      console.log(result)
     } catch (err) {
       console.error(err);
     }

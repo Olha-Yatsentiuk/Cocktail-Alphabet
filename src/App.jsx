@@ -7,8 +7,8 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/list/:letter" component={CocktailList} />
-        <Route path="/cocktail/:id" component={CocktailDetails} />
+        <Route exact path="/list/:letter" component={CocktailList} />
+        <Route path="/list/:letter/:id" component={CocktailDetails} />
       </Switch>
     </Router>
   );
