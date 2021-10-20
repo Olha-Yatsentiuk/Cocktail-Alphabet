@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     background-color: #008fb3;
+    min-height: 100vh;
+    height: 100%;
     `;
 export const Title = styled.h1`
     font-size: 3em;
@@ -55,10 +57,16 @@ export const Glass = styled.div`
     font-size: 20px;
     color: #333333;
     padding-top: 10px;
- 
 `;
+
 export const Picture = styled.img`
     border-radius: 50%;
     `;
 
+export const Message = styled.h1`
+    font-size: 2em;
+    text-align: center;
+    padding-top: 30px;
+    color: red;
+    `;
 

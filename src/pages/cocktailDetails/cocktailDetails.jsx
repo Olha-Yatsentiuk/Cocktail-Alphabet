@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, Card, Type, CocktailName, Glass, Picture } from "./cocktailDetails.styled";
+import { Container, Card, Infowrapper, Type, CocktailName, Glass, Picture, Instruction } from "./cocktailDetails.styled";
 import { getCocktailsByLetter, getCocktails } from "../../store/cocktailListSlice";
 
 export const CocktailDetails = () => {
@@ -21,13 +21,19 @@ export const CocktailDetails = () => {
     }, [drinks]);
 
 return(
-             <Container>
+        <Container>
             <Card>
                 <Picture  src={currentDrink?.strDrinkThumb}></Picture>
-                <CocktailName>{currentDrink?.strDrink}</CocktailName>
-                <Type>Type: {currentDrink?.strCategory}</Type>
-                <Glass>{currentDrink?.strGlass}</Glass>
+               <Infowrapper>
+                    <CocktailName>{currentDrink?.strDrink}</CocktailName>
+                    <Type>Type: {currentDrink?.strCategory} <br/>
+                    {currentDrink?.strAlcoholic}</Type>
+                    
+                    <Glass>{currentDrink?.strGlass}</Glass>
+                    <Instruction>{currentDrink?.strInstructions}</Instruction>
+               </Infowrapper>
             </Card>       
       </Container>
    )
  }
+

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { Container, ListContainer, Card, Title, Type, CocktailName, Glass, InfoContainer, Picture } from './cocktailList.styled';
+import { Container, ListContainer, Card, Title, Type, CocktailName, Glass, InfoContainer, Picture, Message } from './cocktailList.styled';
 import { getCocktailsByLetter, getCocktails } from "../../store/cocktailListSlice";
 
 export const CocktailList = () => {
@@ -9,6 +9,26 @@ export const CocktailList = () => {
     const { letter } = useParams();
     const drinks = useSelector(getCocktails);
     const dispatch = useDispatch();
+
+   
+    const categories = new Set()
+    const types = new Set()
+    const glasses = new Set()
+
+    drinks.forEach((item) => {
+        categories.add(item.strCategory);
+        types.add(item.strAlcoholic);
+        glasses.add(item.strGlass);
+    })
+    
+    const key = "strCategory"
+    const chosenType = "Cocktail"
+
+    const chosenDrinks = drinks.filter((item) => item[key] === chosenType)
+    console.log(chosenDrinks)
+
+
+
 
     useEffect(() => { 
         dispatch(getCocktailsByLetter(letter));
@@ -22,7 +42,7 @@ export const CocktailList = () => {
         <Container>
             <Title>Cocktails Starting on Letter {letter.toUpperCase()}</Title>
             <ListContainer>
-                {result.length === 0 && <p> Sorry, there are no cocktails begining with letter "U". Try some other letters. </p> 
+                {result.length === 0 && <Message> Sorry, there are no cocktails begining with letter "U". Try some other letters. </Message> 
             }
                 {result.map((item)=> (  
                     <Card key={item.idDrink} to={`/list/${letter}/${item.idDrink}`}> 
